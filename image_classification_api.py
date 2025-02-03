@@ -1,3 +1,7 @@
+@app.get("/")
+def read_root():
+    return {"message": "API de clasificación de ropa funcionando 🚀"}
+
 from fastapi import FastAPI, UploadFile, File
 import requests
 import base64

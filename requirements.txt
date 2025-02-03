@@ -1,5 +1,6 @@
 fastapi
 uvicorn
 requests
+pillow
 gunicorn
 python-multipart

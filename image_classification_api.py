@@ -38,8 +38,13 @@ def classify_image(image_bytes):
 
 @app.post("/classify")
 async def classify(file: UploadFile = File(...)):
-    image_bytes = await file.read()
-    labels = classify_image(image_bytes)
+    # Limitar el tamaño del archivo 10MB
+
+    max_file_size = 10 * 1024 * 1024 # 10MB
+    contents = await file.read()
+    if len (contents)>max_file_size
+        return {"error": "El archivo es demasiado grande. Máximo permitido: 10MB"}
+    labels = classify_image(contents) #Procesar la imagen
     return {"labels": labels}
 
 if __name__ == "__main__":

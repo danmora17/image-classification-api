@@ -43,7 +43,7 @@ async def classify(file: UploadFile = File(...)):
     max_file_size = 10 * 1024 * 1024 # 10MB
     contents = await file.read()
     if len (contents)>max_file_size:
-        return {"error": "El archivo es demasiado grande. Máximo permitido: 10MB"}
+        raise HTTPException(status_code=413, detail="El archivo es demasiado grande. Máximo permitido: 10MB")
     labels = classify_image(contents) #Procesar la imagen
     return {"labels": labels}
 

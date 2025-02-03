@@ -47,3 +47,8 @@ def mock_classify_image(image):
     En la implementación real, conectar con un modelo de Machine Learning.
     """
     return ["Camiseta", "Jeans", "Camisa"]  # Respuesta de prueba
+
+    import uvicorn
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)

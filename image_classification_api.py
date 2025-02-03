@@ -9,7 +9,7 @@ from fastapi.middleware.gzip import GZipMiddleware
 app = FastAPI()
 
 # Permitir compresión GZip para manejar archivos grandes
-app.add_middleware(GZipMiddleware, minimun_size=500)
+app.add_middleware(GZipMiddleware, minimum_size=500)
 
 @app.get("/")
 def read_root():

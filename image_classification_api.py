@@ -1,7 +1,3 @@
-@app.get("/")
-def read_root():
-    return {"message": "API de clasificación de ropa funcionando 🚀"}
-
 from fastapi import FastAPI, UploadFile, File
 import requests
 import base64
@@ -9,6 +5,10 @@ import json
 import uvicorn
 
 app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"message": "API de clasificación de ropa funcionando 🚀"}
 
 def classify_image(image_bytes):
     """

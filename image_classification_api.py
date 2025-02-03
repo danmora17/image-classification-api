@@ -1,9 +1,13 @@
 from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 import requests
 from io import BytesIO
 from PIL import Image
 
 app = FastAPI()
+
+class ImageRequest(BaseModel):
+    image_url: str
 
 @app.get("/")
 async def root():
@@ -11,11 +15,14 @@ async def root():
     return {"message": "API de clasificación de ropa funcionando 🚀"}
 
 @app.post("/classify")
-async def classify(image_url: str):
+async def classify(request: ImageRequest):
     """
-    Recibe la URL de una imagen, la descarga y la procesa para clasificarla.
+    Recibe la URL de una imagen en formato JSON, la descarga y la procesa.
     """
     try:
+        # Obtener la URL de la imagen desde el JSON
+        image_url = request.image_url
+
         # Descargar la imagen desde la URL proporcionada
         response = requests.get(image_url)
 
